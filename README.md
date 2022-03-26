@@ -52,7 +52,7 @@ Below are some things I learned with this project.
 ## Ongoing Progress
 
 - BASIC IMPLEMENTATION
-- [todo] start project from flutter create
+- [done] start project from flutter create
 - [todo] update README
 - [todo] portrait only (see joke online)
 - [todo] back ground (case)
