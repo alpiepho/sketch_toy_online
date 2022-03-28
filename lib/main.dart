@@ -38,16 +38,72 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+const _moveDelta = 20.0;
+const _moveMin = 0.0;
+const _moveMax = 200.0;
+
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  final _padUp = 100.0;
-  final _padLeft = 100.0;
-  final _padRight = 100.0;
-  final double _padDown = 100.0;
+  double _padUp = _moveMax / 2;
+  double _padLeft = _moveMax / 2;
+  double _padRight = _moveMax / 2;
+  double _padDown = _moveMax / 2;
 
   void _incrementCounter() {
     setState(() {
       _counter++;
+    });
+  }
+
+  void _moveUp() {
+    setState(() {
+      _padDown += _moveDelta;
+      if (_padDown > _moveMax) {
+        _padDown = _moveMax;
+      }
+      _padUp -= _moveDelta;
+      if (_padUp < _moveMin) {
+        _padUp = _moveMin;
+      }
+    });
+  }
+
+  void _moveDown() {
+    setState(() {
+      _padUp += _moveDelta;
+      if (_padUp > _moveMax) {
+        _padUp = _moveMax;
+      }
+      _padDown -= _moveDelta;
+      if (_padDown < _moveMin) {
+        _padDown = _moveMin;
+      }
+    });
+  }
+
+  void _moveLeft() {
+    setState(() {
+      _padRight += _moveDelta;
+      if (_padRight > _moveMax) {
+        _padRight = _moveMax;
+      }
+      _padLeft -= _moveDelta;
+      if (_padLeft < _moveMin) {
+        _padLeft = _moveMin;
+      }
+    });
+  }
+
+  void _moveRight() {
+    setState(() {
+      _padLeft += _moveDelta;
+      if (_padLeft > _moveMax) {
+        _padLeft = _moveMax;
+      }
+      _padRight -= _moveDelta;
+      if (_padRight < _moveMin) {
+        _padRight = _moveMin;
+      }
     });
   }
 
@@ -81,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
-                    onPressed: _incrementCounter,
+                    onPressed: _moveUp,
                     child: const Icon(Icons.arrow_upward_sharp),
                   ),
                 ),
@@ -91,14 +147,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
-                        onPressed: _incrementCounter,
+                        onPressed: _moveLeft,
                         child: const Icon(Icons.arrow_back_sharp),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
-                        onPressed: _incrementCounter,
+                        onPressed: _moveRight,
                         child: const Icon(Icons.arrow_forward_sharp),
                       ),
                     ),
@@ -107,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
-                    onPressed: _incrementCounter,
+                    onPressed: _moveDown,
                     child: const Icon(Icons.arrow_downward_sharp),
                   ),
                 ),
